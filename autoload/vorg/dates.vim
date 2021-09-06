@@ -13,6 +13,32 @@ function! vorg#dates#nextWeekday(nDays)
 	return strftime('%Y-%m-%d', vorg#dates#nextWeekdayTimestamp(a:nDays))
 endfunction
 
+" Go to the first day of the nth next month
+function! vorg#dates#nextMonth(nMonths)
+  let year = strftime('%Y', localtime())
+  let month = strftime('%m', localtime())
+  let day = 1
+
+  let month += a:nMonths
+  while month > 12
+    let year += 1
+    let month -= 12
+  endwhile
+
+  return printf('%04d-%02d-%02d', year, month, day)
+endfunction
+
+" Add a full year to current date
+function! vorg#dates#nextYear(nYears)
+  let year = strftime('%Y', localtime())
+  let month = strftime('%m', localtime())
+  let day = 1
+
+  let year += a:nYears
+
+  return printf('%04d-%02d-%02d', year, month, day)
+endfunction
+
 function! vorg#dates#today()
 	return strftime('%Y-%m-%d', localtime())
 endfunction
