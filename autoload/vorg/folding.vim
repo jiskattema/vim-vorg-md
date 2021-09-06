@@ -1,6 +1,11 @@
 function! vorg#folding#foldText()
 	let foldlines = getline(v:foldstart, v:foldend)
 	let header = substitute(foldlines[0], "^\\s*-", "+", "")
+
+    " remove too verbose dates
+    let header = substitute(header, '\s*[$.^=]....-..-..', "", "g")
+
+    " copy indentation
 	let text = repeat(' ', indent(v:foldstart)) . header
 
 	let total_boxes = 0
