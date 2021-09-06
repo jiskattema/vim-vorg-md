@@ -91,11 +91,17 @@ function! s:fillAgendaWindow(data)
 endfunction
 
 function! s:gatherFromLine(line, lnum, items)
-	let match = matchstr(a:line, s:scheduled_match)
-	if strlen(match) > 0
-		let line = substitute(a:line, s:scheduled_match, (match[0] ==# "!" ? "DEADLINE" : "SCHEDULED"), "")
-		call add(a:items, [a:lnum, line, match])
-	endif
+    " Remove items that are done or cancelled [x], [X], [-]
+    let match = matchstr(a:line, '\[[xX-]\]')
+    if strlen(match) > 0
+      return
+    endif
+
+    let match = matchstr(a:line, s:scheduled_match)
+    if strlen(match) > 0
+        let line = substitute(a:line, s:scheduled_match, (match[0] ==# "!" ? "DEADLINE" : "SCHEDULED"), "")
+        call add(a:items, [a:lnum, line, match])
+    endif
 endfunction
 
 function! s:gather(buf)
