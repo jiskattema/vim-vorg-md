@@ -36,6 +36,10 @@ vmap <buffer> ac T\|vvf\|
 nmap <buffer> <silent> <Tab> :call vorg#table#jumpCell(1)<CR>
 nmap <buffer> <silent> <S-Tab> :call vorg#table#jumpCell(-1)<CR>
 
+" move to next/prev task
+nmap <buffer> <C-n> ]=
+nmap <buffer> <C-p> [=
+
 " shortcuts for date entry
 ab <buffer> dd <C-R>=strftime("%Y-%m-%d")<CR>
 ab <buffer> dt <C-R>=strftime("%Y-%m-%d @ %H:%M")<CR>
