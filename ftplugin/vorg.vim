@@ -19,8 +19,7 @@ ab <buffer> (( ( )
 nnoremap <buffer> <silent> cx :call vorg#tasks#toggleCheckbox()<CR>
 vnoremap <buffer> <silent> cx :call vorg#tasks#toggleCheckbox()<CR>
 
-nnoremap <buffer> - za
-nnoremap <buffer> g- zA
+nnoremap <buffer> <CR> za
 nnoremap <buffer> <silent> ? :call vorg#agenda#show()<CR>
 
 " table key maps
