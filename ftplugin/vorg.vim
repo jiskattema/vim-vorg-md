@@ -9,9 +9,11 @@ setlocal tabstop=2
 setlocal shiftwidth=2
 setlocal expandtab
 
+setlocal conceallevel=2
+
 " insert mode shortcuts
-ab <buffer> -[ - [ ]
-ab <buffer> [[ [ ]
+ab <buffer> -[ - [ ] ^<C-R>=strftime("%Y-%m-%d")<CR>
+ab <buffer> [[ [ ] ^<C-R>=strftime("%Y-%m-%d")<CR>
 ab <buffer> -( - ( )
 ab <buffer> (( ( )
 
