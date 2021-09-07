@@ -4,25 +4,25 @@
 
 " Syntax Definition
 if version < 600
-	syntax clear
+  syntax clear
 elseif exists("b:current_syntax")
-	finish
+  finish
 endif
 
-syn keyword vorgDeadlineKw    DEADLINE contained
-syn keyword vorgScheduledKw   SCHEDULED contained
+syn keyword vorgDeadlineKw    DEADLINE
+syn keyword vorgScheduledKw   SCHEDULED
 
-syn match vorgDeadline        "\(\s\|^\)\@<=!\d\+[/-]\d\+[/-]\d\+\( @ \d\+:\d\+\)\?\(\s\|$\)\@=" contained
-syn match vorgScheduled       "\(\s\|^\)\@<=\~\d\+[/-]\d\+[/-]\d\+\( @ \d\+:\d\+\)\?\(\s\|$\)\@=" contained
-syn match vorgTag             "\(\s\|^\)\@<=#\w\+" contained
-syn match vorgComment         "// .*" contained
+syn match vorgDeadline        "\(\s\|^\)\@<=!\d\+[/-]\d\+[/-]\d\+\( @ \d\+:\d\+\)\?\(\s\|$\)\@="
+syn match vorgScheduled       "\(\s\|^\)\@<=\~\d\+[/-]\d\+[/-]\d\+\( @ \d\+:\d\+\)\?\(\s\|$\)\@="
+syn match vorgTag             "\(\s\|^\)\@<=#\w\+"
+syn match vorgComment         "// .*"
 
-syn match vorgLink            "\(\s\|^\)\@<=\%(https\?://\|www\.\)[^,; \t]*" contained
-syn match vorgIpv4            "\(\s\|^\)\@<=\d\{1,3\}\.\d\{1,3\}\.\d\{1,3\}\.\d\{1,3\}\(:\d\{1,5\}\)\?\(\s\|$\)\@=" contained
-syn match vorgHex             "\(\s\|^\)\@<=0x[0-9a-fA-F]\+\(\s\|$\)\@=" contained
-syn match vorgNumber          "\(\s\|^\)\@<=[0-9]\+\([,.][0-9]\+\)\?\(\s\|$\)\@=" contained
-syn match vorgDate            "\(\s\|^\)\@<=\d\+[/-]\d\+[/-]\d\+\(\s\|$\)\@=" contained
-syn match vorgTime            "\(\s\|^\)\@<=\d\+:\d\+\(\s\|$\)\@=" contained
+syn match vorgLink            "\(https\?://\|www\.\)[^,; \t]*"
+syn match vorgIpv4            "\d\{1,3\}\.\d\{1,3\}\.\d\{1,3\}\.\d\{1,3\}\(:\d\{1,5\}\)\?\(\s\|$\)\@="
+syn match vorgHex             "0x[0-9a-fA-F]\+\(\s\|$\)\@="
+syn match vorgNumber          "[0-9]\+\([,.][0-9]\+\)\?\(\s\|$\)\@="
+syn match vorgDate            "\d\+[/-]\d\+[/-]\d\+\(\s\|$\)\@="
+syn match vorgTime            "\d\+:\d\+\(\s\|$\)\@="
 
 syn match vorgTask            "\[[ ]\]" contained
 syn match vorgTaskStarted     "\[[\.]\]" contained
@@ -30,19 +30,22 @@ syn match vorgTaskCancelled   "\[[-]\]" contained
 syn match vorgTaskDone        "\[[xX]\]" contained
 syn match vorgRadio           "([ xX])" contained
 
-syn match vorgTaskStartedText ".*\[[\.]\].*" contained contains=vorgTaskStarted,vorgStarted,vorgCreated
-syn match vorgTaskCancelledText   ".*\[[-]\].*" contained contains=vorgTaskCancelled,vorgCancelled,vorgCreated
-syn match vorgTaskDoneText    ".*\[[xX]\].*" contained contains=vorgTaskDone,vorgFinished,vorgCreated
+syn match vorgTaskZeroText    ".*\[[ ]\].*" contains=ALL
+syn match vorgTaskStartedText ".*\[[\.]\].*" contains=ALL
+syn match vorgTaskCancelledText   ".*\[[-]\].*" contains=ALL
+syn match vorgTaskDoneText    ".*\[[xX]\].*" contains=ALL
 
-syn match vorgListItem        "^\s*-" contained
-
+syn match vorgListItem        "^\s*-"
+syn match vorgTitle           "^\s*#.*"
+  
 syntax match vorgCreated   '\^\d\d\d\d-\d\d-\d\d' conceal cchar=^
 syntax match vorgStarted   '\.\d\d\d\d-\d\d-\d\d' conceal cchar=.
 syntax match vorgCancelled '\$\d\d\d\d-\d\d-\d\d' conceal cchar=$
 syntax match vorgFinished  '=\d\d\d\d-\d\d-\d\d'  conceal cchar==
 
 hi def link vorgComment        Comment
-hi def link vorgTag            Comment
+hi def link vorgTag            Identifier
+hi def link vorgTitle          Title
 hi def link vorgTaskDoneText   Comment
 hi def link vorgTaskStarted    Normal
 hi def link vorgTaskCancelled  Comment
