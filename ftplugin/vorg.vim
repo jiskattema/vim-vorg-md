@@ -45,13 +45,22 @@ ab <buffer> dd <C-R>=strftime("%Y-%m-%d")<CR>
 ab <buffer> dt <C-R>=strftime("%Y-%m-%d @ %H:%M")<CR>
 
 " add next weekday date shortcuts
-ab <buffer> dn1 <C-R>=vorg#dates#nextWeekday(1)<CR>
-ab <buffer> dn2 <C-R>=vorg#dates#nextWeekday(2)<CR>
-ab <buffer> dn3 <C-R>=vorg#dates#nextWeekday(3)<CR>
-ab <buffer> dn4 <C-R>=vorg#dates#nextWeekday(4)<CR>
-ab <buffer> dn5 <C-R>=vorg#dates#nextWeekday(5)<CR>
-ab <buffer> dn6 <C-R>=vorg#dates#nextWeekday(6)<CR>
-ab <buffer> dn7 <C-R>=vorg#dates#nextWeekday(7)<CR>
+ab <buffer> dp1 <C-R>=vorg#dates#nextWeekday(1)<CR>
+ab <buffer> dp2 <C-R>=vorg#dates#nextWeekday(2)<CR>
+ab <buffer> dp3 <C-R>=vorg#dates#nextWeekday(3)<CR>
+ab <buffer> dp4 <C-R>=vorg#dates#nextWeekday(4)<CR>
+ab <buffer> dp5 <C-R>=vorg#dates#nextWeekday(5)<CR>
+ab <buffer> dp6 <C-R>=vorg#dates#nextWeekday(6)<CR>
+ab <buffer> dp7 <C-R>=vorg#dates#nextWeekday(7)<CR>
+
+" add next weekday date shortcuts
+ab <buffer> dw1 <C-R>=vorg#dates#nextWeek(1)<CR>
+ab <buffer> dw2 <C-R>=vorg#dates#nextWeek(2)<CR>
+ab <buffer> dw3 <C-R>=vorg#dates#nextWeek(3)<CR>
+ab <buffer> dw4 <C-R>=vorg#dates#nextWeek(4)<CR>
+ab <buffer> dw5 <C-R>=vorg#dates#nextWeek(5)<CR>
+ab <buffer> dw6 <C-R>=vorg#dates#nextWeek(6)<CR>
+ab <buffer> dw7 <C-R>=vorg#dates#nextWeek(7)<CR>
 
 " add next month date shortcuts
 ab <buffer> dm1 <C-R>=vorg#dates#nextMonth(1)<CR>
@@ -70,12 +79,3 @@ ab <buffer> dy4 <C-R>=vorg#dates#nextYear(4)<CR>
 ab <buffer> dy5 <C-R>=vorg#dates#nextYear(5)<CR>
 ab <buffer> dy6 <C-R>=vorg#dates#nextYear(6)<CR>
 ab <buffer> dy7 <C-R>=vorg#dates#nextYear(7)<CR>
-
-" add previous weekday date shortcuts
-ab <buffer> dp1 <C-R>=vorg#dates#nextWeekday(-1)<CR>
-ab <buffer> dp2 <C-R>=vorg#dates#nextWeekday(-2)<CR>
-ab <buffer> dp3 <C-R>=vorg#dates#nextWeekday(-3)<CR>
-ab <buffer> dp4 <C-R>=vorg#dates#nextWeekday(-4)<CR>
-ab <buffer> dp5 <C-R>=vorg#dates#nextWeekday(-5)<CR>
-ab <buffer> dp6 <C-R>=vorg#dates#nextWeekday(-6)<CR>
-ab <buffer> dp7 <C-R>=vorg#dates#nextWeekday(-7)<CR>

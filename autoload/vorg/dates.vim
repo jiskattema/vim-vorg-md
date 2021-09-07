@@ -13,6 +13,12 @@ function! vorg#dates#nextWeekday(nDays)
 	return strftime('%Y-%m-%d', vorg#dates#nextWeekdayTimestamp(a:nDays))
 endfunction
 
+" Go to nth next week
+function! vorg#dates#nextWeek(nWeeks)
+  let time = localtime() + a:nWeeks * 60 * 60 * 24 * 7
+  return strftime('%Y-%m-%d', time)
+endfunction
+
 " Go to the first day of the nth next month
 function! vorg#dates#nextMonth(nMonths)
   let year = strftime('%Y', localtime())
