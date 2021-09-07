@@ -96,29 +96,25 @@ Shortcuts
 - **((** begin a new radio as free text
 - **dd** add the current date
 - **dt** add the current datetime
-- **dl** add the current datetime as a log entry
-- **dn1 to dn7** add the date of the next closest weekday (monday to sunday)
-- **dp1 to dp7** add the date of the previous closest weekday (monday to sunday)
+- **dp1 to dn7** add the date of today-plus-N-days
+- **dw1 to dw7** add the date of today-plus-N-weeks
+- **dm1 to dm7** add the date of first day of the next Nth month
+- **dy1 to dy7** add the date of first day of this month plus N years
 
 ### normal mode
-- **-** fold or unfold a section
-- **g-** fold or unfold a section recursively
-- **cx** toggle a task checkbox (works with count)
-- **=** force table alignment
-- **Tab** jump to next table cell
-- **Shift-Tab** jump to previous table cell
+- **<CR>** fold or unfold a section
 - **?** show agenda
-
-### visual mode
-- **cx** toggle all checkboxes in lines
-
-### text objects
-- **ic** inner table cell
-- **ac** outer table cell
 
 ### agenda and quickfix windows
 - **o** jump to line
 - **q** close the window
+
+To mark a checkbox and set the corresponding datetime:
+- **<leader>z** [ ] zero, no datetime
+- **<leader>x** [x] crossed, set '=YYYY-MM-DD'
+- **<leader>c** [-] cancelled, set '$YYYY-MM-DD'
+- **<leader>v** [.] no mnemonic, set '.YYYY-MM-DD'
+
 
 Commands
 --------
