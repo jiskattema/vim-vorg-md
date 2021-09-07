@@ -1,6 +1,6 @@
 function! vorg#folding#foldText()
 	let foldlines = getline(v:foldstart, v:foldend)
-	let header = substitute(foldlines[0], "^\\s*-", "+", "")
+	let header = substitute(foldlines[0], "^\\s*[-#]", "+", "")
 
     " remove too verbose dates
     let header = substitute(header, '\s*[$.^=]....-..-..', "", "g")
@@ -19,41 +19,43 @@ function! vorg#folding#foldText()
 		endif
 	endfor
 	if total_boxes > 0
-		let text .= " [ " . total_checked . " / " . total_boxes . " ]"
+        let suffix = printf(' %4d / %4d', total_checked, total_boxes)
+        let numdashes = winwidth(win_getid()) - strlen(suffix) - strlen(text)
+		let text = text . repeat('-', numdashes) . suffix 
 	endif
-	return text . ' '
+	return text
 endfunction
 
 function! s:getFoldLevel(lnum)
-	let cur_ind = indent(a:lnum)
-	let lnum = a:lnum - 1
-	while lnum > 0 && cur_ind > 0
-		let ind = indent(lnum)
-		if ind < cur_ind
-			let line = getline(lnum)
-			if line =~ "^\\s*-"
-				return s:getFoldLevel(lnum) + 1
-			elseif line !~ "^\\s*$"
-				let cur_ind = ind
-			endif
-		endif
-		let lnum -= 1
-	endwhile
-	return 0
+  let cur_ind = indent(a:lnum)
+  let lnum = a:lnum - 1
+  while lnum > 0 && cur_ind > 0
+      let ind = indent(lnum)
+      if ind < cur_ind
+          let line = getline(lnum)
+          if line =~ "^\\s*[-#]"
+              return s:getFoldLevel(lnum) + 1
+          elseif line !~ "^\\s*$"
+              let cur_ind = ind
+          endif
+      endif
+      let lnum -= 1
+  endwhile
+  return 0
 endfunction
 
 function! vorg#folding#foldExpr(lnum)
 	" an empty line - same level
 	let line = getline(a:lnum)
 	if line =~ "^\\s*$"
-		return '='
+		return '-1'
 	endif
 
 	let current_fold_level = s:getFoldLevel(a:lnum)
 	let this_line_indent = indent(a:lnum)
 	let next_line_indent = indent(nextnonblank(a:lnum + 1))
 
-	if this_line_indent < next_line_indent && line =~ "^\\s*-"
+	if this_line_indent < next_line_indent && line =~ "^\\s*[-#]"
 		let current_fold_level += 1
 		if s:getFoldLevel(prevnonblank(a:lnum - 1)) >= current_fold_level
 			return ">" . current_fold_level
