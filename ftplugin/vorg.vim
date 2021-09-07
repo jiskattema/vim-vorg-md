@@ -42,6 +42,7 @@ nmap <buffer> <silent> <Tab> :call vorg#table#jumpCell(1)<CR>
 nmap <buffer> <silent> <S-Tab> :call vorg#table#jumpCell(-1)<CR>
 
 " move to next/prev task
+" requires vim-indentwise
 nmap <buffer> <C-n> ]=
 nmap <buffer> <C-p> [=
 
