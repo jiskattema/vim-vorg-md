@@ -70,17 +70,6 @@ a large set of long vorg files.
   - [ ] My Task #tag3
 ```
 
-### Tables
-Vorg supports tables. Any line that starts and ends with a pipe symbol **|** will be treated as a table row.
-Tables feature automated aligning, cell text objects, cell navigation and exporting.
-
-```
-| Person | Phone       | Email          |
-|--------|-------------|----------------|
-| Frank  | 123 456 789 | frank@mail.com |
-| Rob    | 555 556 557 | rob@mail.com   |
-```
-
 ### Agenda
 Vorg allows you to show an additional window that summarizes the scheduled dates and deadlines in your file. Use **?** to show the agenda window.
 When inside the window, use **o** to jump to line containing the scheduled item. Use **q** to close the window.
@@ -120,7 +109,6 @@ Commands
 --------
 These commands are not bound to a specific keymap
 
-- **VorgTableExport** - exports a table under cursor to a prompted format. Currently supported formats are csv, html and json
 - **VorgGather** - search for a prompted word inside a current file, put results into a quickfix list
 - **VorgGatherAll** - search for a prompted word inside vorg files, recursively, put results into a quickfix list
 
@@ -128,7 +116,6 @@ Constructs
 ----------
 Using special notation can cause some parts of a vorg file to have special meaning
 - **#tag** a tag
-- **|...|** a table
 - **!datetime** a deadline
 - **~datetime** a scheduled date
 - **// ...** a comment

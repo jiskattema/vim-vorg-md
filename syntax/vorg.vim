@@ -34,15 +34,8 @@ syn match vorgTaskStartedText ".*\[[\.]\].*" contained contains=vorgTaskStarted,
 syn match vorgTaskCancelledText   ".*\[[-]\].*" contained contains=vorgTaskCancelled,vorgCancelled,vorgCreated
 syn match vorgTaskDoneText    ".*\[[xX]\].*" contained contains=vorgTaskDone,vorgFinished,vorgCreated
 
-syn match vorgEmptyCell       "|\@<=-\{2,\}|\@=" contained
-syn match vorgCellSep         "|" contained
-syn match vorgTableCell       "|[^|]*|" contained contains=ALLBUT,vorgTaskDoneText,vorgListItem,vorgComment,vorgText
-
 syn match vorgListItem        "^\s*-" contained
 
-syn match vorgText            ".*" contains=ALLBUT,vorgTableCell,vorgEmptyCell,vorgCellSep nextgroup=vorgComment
-syn match vorgTableRow        "^\s*|.*|\s*$" contains=vorgTableCell
-  
 syntax match vorgCreated   '\^\d\d\d\d-\d\d-\d\d' conceal cchar=^
 syntax match vorgStarted   '\.\d\d\d\d-\d\d-\d\d' conceal cchar=.
 syntax match vorgCancelled '\$\d\d\d\d-\d\d-\d\d' conceal cchar=$
@@ -53,9 +46,7 @@ hi def link vorgTag            Comment
 hi def link vorgTaskDoneText   Comment
 hi def link vorgTaskStarted    Normal
 hi def link vorgTaskCancelled  Comment
-hi def link vorgEmptyCell      Comment
 hi def link vorgListItem       Function
-hi def link vorgCellSep        Function
 hi def link vorgTask           Special
 hi def link vorgRadio          Special
 hi def link vorgTaskDone       Special

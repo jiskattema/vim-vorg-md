@@ -29,20 +29,6 @@ nnoremap <buffer> <silent> <leader>x :call vorg#checkbox_set('x', '=')<CR>
 nnoremap <buffer> <silent> <leader>c :call vorg#checkbox_set('-', '$')<CR>
 nnoremap <buffer> <silent> <leader>v :call vorg#checkbox_set('.', '.')<CR>
 
-" table key maps
-nmap <buffer> <silent> = :call vorg#table#align()<CR>
-nmap <buffer> dic T\|dt\|=
-nmap <buffer> cic T\|ct\|
-nmap <buffer> yic T\|yt\|
-nmap <buffer> dac T\|df\|=
-nmap <buffer> cac T\|cf\|
-nmap <buffer> yac T\|yf\|
-vmap <buffer> ic T\|vvt\|
-vmap <buffer> ac T\|vvf\|
-
-nmap <buffer> <silent> <Tab> :call vorg#table#jumpCell(1)<CR>
-nmap <buffer> <silent> <S-Tab> :call vorg#table#jumpCell(-1)<CR>
-
 " move to next/prev task
 " requires vim-indentwise
 nmap <buffer> <C-n> ]=
