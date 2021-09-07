@@ -17,3 +17,15 @@ function! vorg#gatherAll(pattern)
 		call s:tmpQuickfix()
 	endif
 endfunction
+
+silent function! vorg#checkbox_set(state, symbol)
+  " remove all progress '.', cancelled '$', and finished '=' dates
+  s/\s*\$\d\d\d\d-\d\d-\d\d//ge
+  s/\s*\.\d\d\d\d-\d\d-\d\d//ge
+  s/\s*=\d\d\d\d-\d\d-\d\d//ge
+  execute('s/\[.\]/[' . a:state . ']/e')
+  if strlen(a:symbol) > 0
+    execute('normal A ' . a:symbol . 'dd')
+    normal! _
+  endif
+endfunction

@@ -22,6 +22,11 @@ vnoremap <buffer> <silent> cx :call vorg#tasks#toggleCheckbox()<CR>
 nnoremap <buffer> <CR> za
 nnoremap <buffer> <silent> ? :call vorg#agenda#show()<CR>
 
+nnoremap <buffer> <silent> <leader>z :call vorg#checkbox_set(' ', '')<CR>
+nnoremap <buffer> <silent> <leader>x :call vorg#checkbox_set('x', '=')<CR>
+nnoremap <buffer> <silent> <leader>c :call vorg#checkbox_set('-', '$')<CR>
+nnoremap <buffer> <silent> <leader>v :call vorg#checkbox_set('.', '.')<CR>
+
 " table key maps
 nmap <buffer> <silent> = :call vorg#table#align()<CR>
 nmap <buffer> dic T\|dt\|=
