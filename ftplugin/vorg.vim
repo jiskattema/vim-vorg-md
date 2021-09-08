@@ -26,9 +26,8 @@ nnoremap <buffer> <silent> <leader>c :call vorg#checkbox_set('-', '$')<CR>
 nnoremap <buffer> <silent> <leader>v :call vorg#checkbox_set('.', '.')<CR>
 
 " move to next/prev task
-" requires vim-indentwise
-nmap <buffer> <C-n> ]=
-nmap <buffer> <C-p> [=
+nmap <buffer> <C-n> :call vorg#gonext()<CR>
+nmap <buffer> <C-p> :call vorg#goprevious()<CR>
 
 " shortcuts for date entry
 abbreviate <buffer> dd <C-R>=strftime("%Y-%m-%d")<CR>
