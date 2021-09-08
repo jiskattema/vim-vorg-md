@@ -12,8 +12,9 @@ setlocal expandtab
 setlocal conceallevel=2
 
 " insert mode shortcuts
-ab <buffer> -[ - [ ] ^<C-R>=strftime("%Y-%m-%d")<CR>
-ab <buffer> [[ [ ] ^<C-R>=strftime("%Y-%m-%d")<CR>
+abbreviate <buffer> -[ - [ ] ^<C-R>=strftime("%Y-%m-%d")<CR>
+abbreviate <buffer> [[ [ ] ^<C-R>=strftime("%Y-%m-%d")<CR>
+abbreviate <buffer> dl ^<C-R>=strftime("%Y-%m-%d")<CR>
 
 " normal mode shortcuts
 nnoremap <buffer> <CR> za
@@ -30,41 +31,42 @@ nmap <buffer> <C-n> ]=
 nmap <buffer> <C-p> [=
 
 " shortcuts for date entry
-ab <buffer> dd <C-R>=strftime("%Y-%m-%d")<CR>
-ab <buffer> dt <C-R>=strftime("%Y-%m-%d @ %H:%M")<CR>
+abbreviate <buffer> dd <C-R>=strftime("%Y-%m-%d")<CR>
+abbreviate <buffer> dt <C-R>=strftime("%Y-%m-%d @ %H:%M")<CR>
+
 
 " add next day shortcuts
-ab <buffer> dd1 <C-R>=vorg#dates#nextDay(1)<CR>
-ab <buffer> dd2 <C-R>=vorg#dates#nextDay(2)<CR>
-ab <buffer> dd3 <C-R>=vorg#dates#nextDay(3)<CR>
-ab <buffer> dd4 <C-R>=vorg#dates#nextDay(4)<CR>
-ab <buffer> dd5 <C-R>=vorg#dates#nextDay(5)<CR>
-ab <buffer> dd6 <C-R>=vorg#dates#nextDay(6)<CR>
-ab <buffer> dd7 <C-R>=vorg#dates#nextDay(7)<CR>
+abbreviate <buffer> dd1 <C-R>=vorg#dates#nextDay(1)<CR>
+abbreviate <buffer> dd2 <C-R>=vorg#dates#nextDay(2)<CR>
+abbreviate <buffer> dd3 <C-R>=vorg#dates#nextDay(3)<CR>
+abbreviate <buffer> dd4 <C-R>=vorg#dates#nextDay(4)<CR>
+abbreviate <buffer> dd5 <C-R>=vorg#dates#nextDay(5)<CR>
+abbreviate <buffer> dd6 <C-R>=vorg#dates#nextDay(6)<CR>
+abbreviate <buffer> dd7 <C-R>=vorg#dates#nextDay(7)<CR>
 
 " add next weekday date shortcuts
-ab <buffer> dw1 <C-R>=vorg#dates#nextWeek(1)<CR>
-ab <buffer> dw2 <C-R>=vorg#dates#nextWeek(2)<CR>
-ab <buffer> dw3 <C-R>=vorg#dates#nextWeek(3)<CR>
-ab <buffer> dw4 <C-R>=vorg#dates#nextWeek(4)<CR>
-ab <buffer> dw5 <C-R>=vorg#dates#nextWeek(5)<CR>
-ab <buffer> dw6 <C-R>=vorg#dates#nextWeek(6)<CR>
-ab <buffer> dw7 <C-R>=vorg#dates#nextWeek(7)<CR>
+abbreviate <buffer> dw1 <C-R>=vorg#dates#nextWeek(1)<CR>
+abbreviate <buffer> dw2 <C-R>=vorg#dates#nextWeek(2)<CR>
+abbreviate <buffer> dw3 <C-R>=vorg#dates#nextWeek(3)<CR>
+abbreviate <buffer> dw4 <C-R>=vorg#dates#nextWeek(4)<CR>
+abbreviate <buffer> dw5 <C-R>=vorg#dates#nextWeek(5)<CR>
+abbreviate <buffer> dw6 <C-R>=vorg#dates#nextWeek(6)<CR>
+abbreviate <buffer> dw7 <C-R>=vorg#dates#nextWeek(7)<CR>
 
 " add next month date shortcuts
-ab <buffer> dm1 <C-R>=vorg#dates#nextMonth(1)<CR>
-ab <buffer> dm2 <C-R>=vorg#dates#nextMonth(2)<CR>
-ab <buffer> dm3 <C-R>=vorg#dates#nextMonth(3)<CR>
-ab <buffer> dm4 <C-R>=vorg#dates#nextMonth(4)<CR>
-ab <buffer> dm5 <C-R>=vorg#dates#nextMonth(5)<CR>
-ab <buffer> dm6 <C-R>=vorg#dates#nextMonth(6)<CR>
-ab <buffer> dm7 <C-R>=vorg#dates#nextMonth(7)<CR>
+abbreviate <buffer> dm1 <C-R>=vorg#dates#nextMonth(1)<CR>
+abbreviate <buffer> dm2 <C-R>=vorg#dates#nextMonth(2)<CR>
+abbreviate <buffer> dm3 <C-R>=vorg#dates#nextMonth(3)<CR>
+abbreviate <buffer> dm4 <C-R>=vorg#dates#nextMonth(4)<CR>
+abbreviate <buffer> dm5 <C-R>=vorg#dates#nextMonth(5)<CR>
+abbreviate <buffer> dm6 <C-R>=vorg#dates#nextMonth(6)<CR>
+abbreviate <buffer> dm7 <C-R>=vorg#dates#nextMonth(7)<CR>
 
 " add next year date shortcuts
-ab <buffer> dy1 <C-R>=vorg#dates#nextYear(1)<CR>
-ab <buffer> dy2 <C-R>=vorg#dates#nextYear(2)<CR>
-ab <buffer> dy3 <C-R>=vorg#dates#nextYear(3)<CR>
-ab <buffer> dy4 <C-R>=vorg#dates#nextYear(4)<CR>
-ab <buffer> dy5 <C-R>=vorg#dates#nextYear(5)<CR>
-ab <buffer> dy6 <C-R>=vorg#dates#nextYear(6)<CR>
-ab <buffer> dy7 <C-R>=vorg#dates#nextYear(7)<CR>
+abbreviate <buffer> dy1 <C-R>=vorg#dates#nextYear(1)<CR>
+abbreviate <buffer> dy2 <C-R>=vorg#dates#nextYear(2)<CR>
+abbreviate <buffer> dy3 <C-R>=vorg#dates#nextYear(3)<CR>
+abbreviate <buffer> dy4 <C-R>=vorg#dates#nextYear(4)<CR>
+abbreviate <buffer> dy5 <C-R>=vorg#dates#nextYear(5)<CR>
+abbreviate <buffer> dy6 <C-R>=vorg#dates#nextYear(6)<CR>
+abbreviate <buffer> dy7 <C-R>=vorg#dates#nextYear(7)<CR>
