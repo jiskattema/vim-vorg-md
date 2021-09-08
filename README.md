@@ -1,6 +1,6 @@
 Vorg
 ====
-The plain text organizer for ViM
+A plain text organizer for ViM
 
 Format
 ------
@@ -14,18 +14,26 @@ in any text editor.
 - Someday
   - [ ] Read "Getting Things Done" #book
   - [ ] Watch "Men Of Valor" #movie
-- Logbook
-  2012-10-23 @ 12:00 | Found a nice CSS tool #tools
+
+# Logbook
+
+## 2012
+  2012-10-23 Found a nice CSS tool #tools
 ```
 
 ### Sections
-Vorg is a hierarchical file format. You organize your notes, tasks and text in sections, sub-sections, sub-sub-sections etc.
-The plugin will automatically fold sections based on their indentation level.
+Vorg is a hierarchical file format. You organize your notes, tasks and text in
+sections, sub-sections, sub-sub-sections etc.  The plugin will automatically
+fold sections based on their indentation level.
+
+Markdown headers are also allowed, and will be folded just like tasks.
 
 ### Tasks
-Vorg supports and automates task tracking. Existing mappings help with checkbox creation. Tasks can be toggled with **cx** mapping, both individually and in groups (visual mode or range)
+Vorg supports and automates task tracking.  Existing mappings help with checkbox
+creation and manipulation.
 
-A folded section text will show the number of tasks completed and total tasks, for example [ 3 / 5 ]
+A folded section text will show the number of tasks completed and total tasks,
+for example [ 3 / 5 ]
 
 ```
 - Section
@@ -56,9 +64,11 @@ a large set of long vorg files.
 ```
 
 ### Agenda
-Vorg allows you to show an additional window that summarizes the scheduled dates and deadlines in your file. Use **?** to show the agenda window.
-When inside the window, use **o** to jump to line containing the scheduled item. Use **q** to close the window.
-Only dates prepended with **~** or **!** will be taken into account in the agenda window.
+Vorg allows you to show an additional window that summarizes the scheduled dates
+and deadlines in your file. Use **?** to show the agenda window.  When inside
+the window, use **o** to jump to line containing the scheduled item. Use **q**
+to close the window.  Only dates prepended with **~** or **!** will be taken
+into account in the agenda window.
 
 Shortcuts
 ---------
@@ -66,6 +76,7 @@ Shortcuts
 ### insert mode
 - **-[** begin a new task as list item
 - **[[** begin a new task as free text
+- **dl** add a logbook note
 - **dd** add the current date
 - **dt** add the current datetime
 - **dd1 to dd9** add the date of today-plus-N-days
@@ -76,6 +87,20 @@ Shortcuts
 ### normal mode
 - **<CR>** fold or unfold a section
 - **?** show agenda
+- **<C-n>** go to the next item
+- **<C-p>** go to the previous item
+
+where 'next' and 'previous' item depend on the context.
+To find the next item, the first of the following matches is used:
+- when the cursor is on a bullet point, go to the next bullet point in that list
+  (skipping sub-lists).
+- if the cursor is on the last bullet point in a list, go up one level to either
+  a containing list, or a markdown section
+- if the cursor is in a markdown section, go to the next section at the same
+  level.
+- if the cursos is on a last sub-section, move to the next section.
+
+The 'previous' item is defined 
 
 ### agenda and quickfix windows
 - **o** jump to line
@@ -92,12 +117,15 @@ Commands
 --------
 These commands are not bound to a specific keymap
 
-- **VorgGather** - search for a prompted word inside a current file, put results into a quickfix list
-- **VorgGatherAll** - search for a prompted word inside vorg files, recursively, put results into a quickfix list
+- **VorgGather** - search for a prompted word inside a current file, put results
+  into a quickfix list
+- **VorgGatherAll** - search for a prompted word inside vorg files, recursively,
+  put results into a quickfix list
 
 Constructs
 ----------
-Using special notation can cause some parts of a vorg file to have special meaning
+Using special notation can cause some parts of a vorg file to have special
+meaning:
 - **#tag** a tag
 - **!datetime** a deadline
 - **~datetime** a scheduled date
@@ -105,13 +133,15 @@ Using special notation can cause some parts of a vorg file to have special meani
 
 Indentation
 -----------
-A valid vorg file uses (exactly) 2 spaces to indent items. This scheme ensures your files will be readable in any editor.
-This is not a technical constraint. It is an aesthetic constraint designed to make sure vorg files are easy to read.
+A valid vorg file uses (exactly) 2 spaces to indent items. This scheme ensures
+your files will be readable in any editor.  This is not a technical constraint.
+It is an aesthetic constraint designed to make sure vorg files are easy to read.
 
 Dates
 -----
-Vorg file uses dates in format: **YYYY-MM-DD @ HH:II**
-The plugin will try to normalize the date (not the time) part, but it's best to keep this convention.
+Vorg file uses dates in format: **YYYY-MM-DD @ HH:II**, with the '@' part (the
+hours and minutes) optional.  The plugin will try to normalize the date (not the
+time) part, but it's best to keep this convention.
 
 Vim requirements
 ----------------
@@ -122,3 +152,4 @@ Authors
 ---------------
 The plugin was originally developed by Ithai Levi <https://github.com/rlofc>
 Forked and currently maintained by Bartosz Jarzyna <https://github.com/brtastic>
+Again forked and drastically hacked upon by Jisk Attema <https://github.com/jiskjattema>
