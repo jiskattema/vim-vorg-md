@@ -27,21 +27,35 @@ function! vorg#folding#foldText()
 endfunction
 
 function! s:getFoldLevel(lnum)
-  let cur_ind = indent(a:lnum)
-  let lnum = a:lnum - 1
-  while lnum > 0 && cur_ind > 0
-      let ind = indent(lnum)
-      if ind < cur_ind
-          let line = getline(lnum)
-          if line =~ "^\\s*[-#]"
-              return s:getFoldLevel(lnum) + 1
-          elseif line !~ "^\\s*$"
-              let cur_ind = ind
-          endif
-      endif
-      let lnum -= 1
+  " Current foldlevel consists of:
+  "  - the indentation of the current line
+  "  - the indentation of the markdown section
+  let lnum = a:lnum
+  let line = getline(lnum)
+
+  let level = indent(lnum) / 2
+  if line =~ "^\\s*[-]"
+    " a dash starts a new fold
+    let level += 1
+  endif
+
+  " move up, to find closest markdown header
+  while line !~ "^\\s*[#]" && lnum > 0
+    let lnum -= 1
+    let line = getline(lnum)
   endwhile
-  return 0
+
+  " add foldlevels for the markdown header
+  if line =~ "^\\s*[#]"
+    let markdown_depth = substitute(line, '^\s*\(#*\).*', '\1', 'e' )
+    let level += strlen(markdown_depth)
+  endif
+
+  return level
+endfunction
+
+function! vorg#folding#jisk(lnum)
+  return s:getFoldLevel(a:lnum)
 endfunction
 
 function! vorg#folding#foldExpr(lnum)
@@ -52,14 +66,18 @@ function! vorg#folding#foldExpr(lnum)
 	endif
 
 	let current_fold_level = s:getFoldLevel(a:lnum)
-	let this_line_indent = indent(a:lnum)
-	let next_line_indent = indent(nextnonblank(a:lnum + 1))
 
-	if this_line_indent < next_line_indent && line =~ "^\\s*[-#]"
-		let current_fold_level += 1
-		if s:getFoldLevel(prevnonblank(a:lnum - 1)) >= current_fold_level
-			return ">" . current_fold_level
-		endif
-	endif
+    " markdown headers and items always start a new fold
+    if line =~ "^\\s*[-#]"
+      return ">" . current_fold_level
+    endif
+
+    " a fold ends if the next line starts a new one
+    " this prevents vim from merging folds of the same level
+    let nextline = nextnonblank(a:lnum + 1)
+    if nextline =~ "^\\s[-#]"
+      return "<" . current_fold_level
+    endif
+
 	return current_fold_level
 endfunction
