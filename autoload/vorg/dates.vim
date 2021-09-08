@@ -1,16 +1,7 @@
-function! vorg#dates#nextWeekdayTimestamp(nDays)
-	let dir  = a:nDays < 0 ? -1 : 1
-	let day  = abs(a:nDays) % 7
-	let sday = 60 * 60 * 24 * dir
-	let time = localtime() + sday
-	while strftime('%w', time) != day
-		let time += sday
-	endwhile
-	return time
-endfunction
-
-function! vorg#dates#nextWeekday(nDays)
-	return strftime('%Y-%m-%d', vorg#dates#nextWeekdayTimestamp(a:nDays))
+" Go to nth next day
+function! vorg#dates#nextDay(nDays)
+  let time = localtime() + a:nDays * 60 * 60 * 24
+  return strftime('%Y-%m-%d', time)
 endfunction
 
 " Go to nth next week

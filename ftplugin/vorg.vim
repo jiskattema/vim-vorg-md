@@ -14,13 +14,8 @@ setlocal conceallevel=2
 " insert mode shortcuts
 ab <buffer> -[ - [ ] ^<C-R>=strftime("%Y-%m-%d")<CR>
 ab <buffer> [[ [ ] ^<C-R>=strftime("%Y-%m-%d")<CR>
-ab <buffer> -( - ( )
-ab <buffer> (( ( )
 
 " normal mode shortcuts
-nnoremap <buffer> <silent> cx :call vorg#tasks#toggleCheckbox()<CR>
-vnoremap <buffer> <silent> cx :call vorg#tasks#toggleCheckbox()<CR>
-
 nnoremap <buffer> <CR> za
 nnoremap <buffer> <silent> ? :call vorg#agenda#show()<CR>
 
@@ -38,14 +33,14 @@ nmap <buffer> <C-p> [=
 ab <buffer> dd <C-R>=strftime("%Y-%m-%d")<CR>
 ab <buffer> dt <C-R>=strftime("%Y-%m-%d @ %H:%M")<CR>
 
-" add next weekday date shortcuts
-ab <buffer> dp1 <C-R>=vorg#dates#nextWeekday(1)<CR>
-ab <buffer> dp2 <C-R>=vorg#dates#nextWeekday(2)<CR>
-ab <buffer> dp3 <C-R>=vorg#dates#nextWeekday(3)<CR>
-ab <buffer> dp4 <C-R>=vorg#dates#nextWeekday(4)<CR>
-ab <buffer> dp5 <C-R>=vorg#dates#nextWeekday(5)<CR>
-ab <buffer> dp6 <C-R>=vorg#dates#nextWeekday(6)<CR>
-ab <buffer> dp7 <C-R>=vorg#dates#nextWeekday(7)<CR>
+" add next day shortcuts
+ab <buffer> dd1 <C-R>=vorg#dates#nextDay(1)<CR>
+ab <buffer> dd2 <C-R>=vorg#dates#nextDay(2)<CR>
+ab <buffer> dd3 <C-R>=vorg#dates#nextDay(3)<CR>
+ab <buffer> dd4 <C-R>=vorg#dates#nextDay(4)<CR>
+ab <buffer> dd5 <C-R>=vorg#dates#nextDay(5)<CR>
+ab <buffer> dd6 <C-R>=vorg#dates#nextDay(6)<CR>
+ab <buffer> dd7 <C-R>=vorg#dates#nextDay(7)<CR>
 
 " add next weekday date shortcuts
 ab <buffer> dw1 <C-R>=vorg#dates#nextWeek(1)<CR>

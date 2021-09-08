@@ -11,10 +11,6 @@ in any text editor.
 - Today
   - [ ] Call Tom #office #2m
   - [ ] Pick-up my laundry #car #30m
-  - Evening
-    ( ) Watch a movie
-    (x) Hang out with friends
-    ( ) Study
 - Someday
   - [ ] Read "Getting Things Done" #book
   - [ ] Watch "Men Of Valor" #movie
@@ -36,17 +32,6 @@ A folded section text will show the number of tasks completed and total tasks, f
   - Sub-Section
      [ ] First Priority Task
      [x] Second Priority Task
-```
-
-### Radios
-Radio boxes are special kinds of tasks that work in groups. Upon checking a radio box all other boxes in a group are going to be unchecked. A group of radio boxes is based on indentation (same level for all boxes in a group) and on proximity (a line without a radio box breaks the group).
-
-Radio boxes are not taken into account when counting the number of tasks for a section.
-
-```
-- Section
-  ( ) Either one
-  (x) Or the other
 ```
 
 ### Free Text
@@ -80,15 +65,13 @@ Shortcuts
 
 ### insert mode
 - **-[** begin a new task as list item
-- **-(** begin a new radio as list item
 - **[[** begin a new task as free text
-- **((** begin a new radio as free text
 - **dd** add the current date
 - **dt** add the current datetime
-- **dp1 to dn7** add the date of today-plus-N-days
-- **dw1 to dw7** add the date of today-plus-N-weeks
-- **dm1 to dm7** add the date of first day of the next Nth month
-- **dy1 to dy7** add the date of first day of this month plus N years
+- **dd1 to dd9** add the date of today-plus-N-days
+- **dw1 to dw9** add the date of today-plus-N-weeks
+- **dm1 to dm9** add the date of first day of the next Nth month
+- **dy1 to dy9** add the date of first day of this month plus N years
 
 ### normal mode
 - **<CR>** fold or unfold a section
