@@ -57,6 +57,10 @@ function! vorg#dates#compare(d1, d2)
 endfunction
 
 function! vorg#dates#commonName(date)
+    if strlen(a:date) == 0
+        return ''
+    endif
+
 	let date_dist = vorg#dates#compare(a:date, vorg#dates#today())
 
 	let date = a:date
@@ -67,7 +71,13 @@ function! vorg#dates#commonName(date)
 	elseif date_dist == 1
 		let date = "Tomorrow"
 	elseif date_dist > 0 && date_dist < 7
-		let date = substitute(strftime("%A", vorg#dates#nextWeekdayTimestamp(date_dist)), '\<.', '\u&', "")
+		let date = substitute(strftime("%A", strptime('%Y-%m-%d', date)), '\<.', '\u&', "")
+    elseif date_dist >= 7 && date_dist < 14
+        let date = "Soon"
+    elseif date_dist >= 14 && date_dist < 300
+        let date = substitute(strftime("%B", strptime('%Y-%m-%d', date)), '\<.', '\u&', "")
+    elseif date_dist >= 300 
+        let date = strftime("%Y", strptime('%Y-%m-%d', date))
 	endif
 
 	return date

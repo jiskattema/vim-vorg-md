@@ -25,6 +25,10 @@ nnoremap <buffer> <silent> <leader>x :call vorg#checkbox_set('x', '=')<CR>
 nnoremap <buffer> <silent> <leader>c :call vorg#checkbox_set('-', '$')<CR>
 nnoremap <buffer> <silent> <leader>v :call vorg#checkbox_set('.', '.')<CR>
 
+nnoremap <buffer> <silent> <leader>r :call vorg#qf_started()<CR>
+nnoremap <buffer> <silent> <leader>f :call vorg#qf_todo()<CR>
+
+
 " move to next/prev task
 nmap <buffer> <C-n> :call vorg#gonext()<CR>
 nmap <buffer> <C-p> :call vorg#goprevious()<CR>

@@ -87,3 +87,77 @@ function vorg#goprevious()
     normal! _
   endif
 endfunction
+
+" Copied from user938271
+" https://vi.stackexchange.com/questions/19940/changing-how-the-quickfix-list-displays-matches
+function vorg#qf_todo() abort
+  " Find deadlines or scheduled dates with an empty [ ]  or started [.] checkbox in front
+  silent vimgrep /^.*\[[ .]\].*[~!]\d\d\d\d-\d\d-\d\d/gj %
+
+  let qfl = getqflist()
+  call sort(qfl, function('s:SortTodo'))
+
+  call setqflist([], 'r', #{
+        \ items: qfl,
+        \ quickfixtextfunc : 's:quickfixtextfunc'
+        \ })
+  copen
+  set syntax=vorg
+endfunction
+
+function vorg#qf_started() abort
+  " Find started dates
+  silent vimgrep /[.]\d\d\d\d-\d\d-\d\d/gj %
+
+  let qfl = getqflist()
+  call sort(qfl, function('s:SortTodo'))
+
+  call setqflist([], 'r', #{
+        \ items: qfl,
+        \ quickfixtextfunc : 's:quickfixtextfunc'
+        \ })
+  copen
+  set syntax=vorg
+endfunction
+
+function s:quickfixtextfunc(info) abort
+    if a:info.quickfix
+        let qfl = getqflist(#{id: a:info.id, items: 1}).items
+    else
+        let qfl = getloclist(a:info.winid, #{id: a:info.id, items: 1}).items
+    endif
+
+    let l = []
+    for idx in range(a:info.start_idx - 1, a:info.end_idx - 1)
+        let e = qfl[idx]
+        let fname = bufname(e.bufnr)->fnamemodify(':t')
+        let cnamedate = vorg#dates#commonName(matchstr(e.text, '[!~]\d\d\d\d-\d\d-\d\d')[1:])
+        let summary = substitute(e.text, '[!~^.$-]\d\d\d\d-\d\d-\d\d', '', 'ge')
+        let summary = substitute(summary, '^\s*\(#*\)\?-\?\s*\(\[.\]\s*\)\?', '', 'ge')
+        let displayed = printf('%12s  %s',
+            \ cnamedate,
+            \ summary
+            \ )
+        call add(l, displayed)
+    endfor
+    return l
+endfunction
+
+function s:SortTodo(i, j) abort
+  let s1 = matchstr(a:i.text, '[!~]\d\d\d\d-\d\d-\d\d')
+  let s2 = matchstr(a:j.text, '[!~]\d\d\d\d-\d\d-\d\d')
+
+  " For started items without a date
+  if strlen(s1) == 0
+    return 1
+  endif
+  if strlen(s2) == 0
+    return -1
+  endif
+
+  " drop leading ~!
+  let s1 = s1[1:]
+  let s2 = s2[1:]
+
+  return s1 ==# s2 ? 0 : s1 ># s2 ? 1 : -1
+endfunction
