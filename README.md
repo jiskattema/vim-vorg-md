@@ -149,10 +149,11 @@ The plugin will try to normalize the date (not the time) part, but it's best to 
 
 Vim requirements
 ----------------
-TBD.
-Required Vim version 8
+
+Works under Vim (version 8+) or Neovim.
 
 Authors
 ---------------
 The plugin was originally developed by Ithai Levi <https://github.com/rlofc>
 Forked and currently maintained by Bartosz Jarzyna <https://github.com/bbrtj>
+
