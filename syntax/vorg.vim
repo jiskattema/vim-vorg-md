@@ -1,5 +1,5 @@
 " vorg.vim - Vim organization format.
-" Maintainer:   Bartosz Jarzyna <https://github.com/brtastic>
+" Maintainer:   Bartosz Jarzyna <https://github.com/bbrtj>
 " Version:      1.0
 
 " Syntax Definition

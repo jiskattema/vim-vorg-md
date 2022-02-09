@@ -155,4 +155,4 @@ Required Vim version 8
 Authors
 ---------------
 The plugin was originally developed by Ithai Levi <https://github.com/rlofc>
-Forked and currently maintained by Bartosz Jarzyna <https://github.com/brtastic>
+Forked and currently maintained by Bartosz Jarzyna <https://github.com/bbrtj>
