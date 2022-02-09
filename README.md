@@ -154,6 +154,6 @@ Works under Vim (version 8+) or Neovim.
 
 Authors
 ---------------
-The plugin was originally developed by Ithai Levi <https://github.com/rlofc>
-Forked and currently maintained by Bartosz Jarzyna <https://github.com/bbrtj>
+Developed by Bartosz Jarzyna <https://github.com/bbrtj>, licensed under BSD 2-clause.
+The initial plugin idea by Ithai Levi <https://github.com/rlofc>
 
