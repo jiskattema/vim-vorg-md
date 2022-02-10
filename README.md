@@ -36,13 +36,16 @@ Abbreviations are in place that make inserting dates fun:
 - `dnX` will insert the date of the next day of the week X. `dn1` will insert next monday, while `dn6` will insert next saturday
 - `dpX` does the same as `dnX`, but into the past.
 
-Vorg file uses dates in format: **YYYY-MM-DD @ HH:II**
+vorg-md plugin uses dates in format: **YYYY-MM-DD @ HH:II**
 The plugin will try to normalize the date (not the time) part, but it's best to keep this convention.
 
 ### Agenda
-Vorg allows you to show an additional window that summarizes the scheduled dates and deadlines in your file. Use **??** to show the agenda window.
+vorg-md allows you to show an additional window that summarizes the scheduled dates and deadlines in your file. Use **??** to show the agenda window.
 When inside the window, use **o** to jump to line containing the scheduled item. Use **q** to close the window.
 Only dates prepended with **~** will be taken into account in the agenda window.
+
+### Folds
+Having vorg-md
 
 Cheatsheet
 ---------
