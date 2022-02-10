@@ -1,10 +1,9 @@
-# Vorg 2.0
+# vorg-md
 Markdown-compilant plain text organizer for vim / neovim.
 
-## Idea
-vim-vorg is a collection of vimscript tools that make using markdown as your personal organizer easy and fun.
-
 ## What it brings to the table?
+
+vim-vorg is a collection of vimscript tools that make using markdown as your personal organizer easy and fun.
 
 ### Checkboxes
 Use **-[** abbreviation to create an unchecked checkbox `- [ ]`
@@ -21,6 +20,7 @@ A folded section text will show the number of tasks completed and total tasks, f
 ### Tables
 Any line that starts and ends with a pipe symbol **|** will be treated as a table row.
 Tables feature automated aligning, cell text objects, cell navigation and exporting.
+Tables can also be exported with `:call VorgmdTableExport` into csv, json or html.
 
 ```
 | Person | Phone       | Email          |
@@ -76,7 +76,7 @@ Commands
 --------
 These commands are not bound to a specific keymap
 
-- **VorgTableExport** - exports a table under cursor to a prompted format. Currently supported formats are csv, html and json
+- **VorgmdTableExport** - exports a table under cursor to a prompted format. Currently supported formats are csv, html and json
 
 Vim requirements
 ----------------
@@ -86,5 +86,5 @@ Works under Vim (version 8+) or Neovim.
 Authors
 ---------------
 Developed by Bartosz Jarzyna <https://github.com/bbrtj>, licensed under BSD 2-clause.
-The initial plugin idea by Ithai Levi <https://github.com/rlofc>
+The initial vorg plugin idea by Ithai Levi <https://github.com/rlofc>
 

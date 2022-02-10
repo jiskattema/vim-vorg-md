@@ -3,7 +3,7 @@ function! s:isTable(lnum)
 endfunction
 
 function! s:cleanColumn(column)
-	let col = vorg#util#trim(a:column)
+	let col = vorgmd#util#trim(a:column)
 	let col = substitute(l:col, '^-\{2,\}$', "", "g")
 	return l:col
 endfunction
@@ -78,12 +78,12 @@ endfunction
 
 function! s:getTable(lnum)
 		let row_data = s:tableParse({}, a:lnum)
-		let table = vorg#util#parseLinesAround(a:lnum, {a -> row_data}, function("s:tableCondition"), function("s:tableParse"))
+		let table = vorgmd#util#parseLinesAround(a:lnum, {a -> row_data}, function("s:tableCondition"), function("s:tableParse"))
 		call add(table, [a:lnum, row_data])
 		return table
 endfunction
 
-function! vorg#table#align()
+function! vorgmd#table#align()
 	let line = line(".")
 	if s:isTable(line)
 		let table = s:getTable(line)
@@ -94,7 +94,7 @@ function! vorg#table#align()
 	endif
 endfunction
 
-function! vorg#table#jumpCell(direction)
+function! vorgmd#table#jumpCell(direction)
 	let line = line(".")
 
 	if s:isTable(line)
@@ -127,7 +127,7 @@ function! vorg#table#jumpCell(direction)
 	endif
 endfunction
 
-function! vorg#table#export(format)
+function! vorgmd#table#export(format)
 	let line = line(".")
 
 	if s:isTable(line)
@@ -143,7 +143,7 @@ function! vorg#table#export(format)
 
 		" export
 		try
-			call vorg#util#export(table, a:format)
+			call vorgmd#util#export(table, a:format)
 			let &filetype = a:format
 		catch /^no exporter/
 			echoe v:exception

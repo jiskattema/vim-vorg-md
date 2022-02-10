@@ -1,14 +1,14 @@
-let s:scheduled_match = '\(\s\|^\)\@<=[~!]\d*[/-]\d*[/-]\d*\( @ \d*:\d*\)\?\(\s\|$\)\@='
+let s:scheduled_match = '\(\s\|^\)\@<=[~]\d*[/-]\d*[/-]\d*\( @ \d*:\d*\)\?\(\s\|$\)\@='
 
 function! s:showAgendaWindow()
 	vertical rightbelow new
 
 	vertical resize 50
-	setlocal filetype=vorg buftype=nofile nobuflisted bufhidden=wipe
+	setlocal filetype=markdown buftype=nofile nobuflisted bufhidden=wipe
 
 	map <buffer> <silent> q :q<CR>
-	map <buffer> <silent> o :call vorg#agenda#jump()<CR>
-	unmap <buffer> ?
+	map <buffer> <silent> o :call vorgmd#agenda#jump()<CR>
+	unmap <buffer> ??
 endfunction
 
 function! s:entangleWindows()
@@ -20,15 +20,15 @@ function! s:entangleWindows()
 	let b:from = from
 	let agenda += [win_getid(winnr()), bufnr("%")]
 	let b:from_changedtick = changedtick
-	autocmd BufEnter <buffer> call vorg#agenda#reload()
-	execute "autocmd BufUnload,BufDelete,BufWipeout <buffer=" . from[1] . "> call vorg#agenda#close([" . join(agenda, ",") . "])"
+	autocmd BufEnter <buffer> call vorgmd#agenda#reload()
+	execute "autocmd BufUnload,BufDelete,BufWipeout <buffer=" . from[1] . "> call vorgmd#agenda#close([" . join(agenda, ",") . "])"
 endfunction
 
 function! s:makePrintableStructure(data)
 	let dates = {}
 
 	for [lnum, text, date] in a:data
-		let text = vorg#util#trim(text)
+		let text = vorgmd#util#trim(text)
 		let date = date[1:]
 
 		let date_time = split(date, ' @ ')
@@ -37,7 +37,7 @@ function! s:makePrintableStructure(data)
 			let text = date_time[1] . " - " . text
 		endif
 
-		let date = vorg#dates#normalize(date)
+		let date = vorgmd#dates#normalize(date)
 		let dict_item = get(dates, date, [])
 		call add(dict_item, [lnum, text])
 		let dates[date] = dict_item
@@ -48,7 +48,7 @@ function! s:makePrintableStructure(data)
 	\})
 
 	return sort(items(dates), {
-		\d1, d2 -> vorg#dates#compare(d1[0], d2[0])
+		\d1, d2 -> vorgmd#dates#compare(d1[0], d2[0])
 	\})
 endfunction
 
@@ -61,16 +61,16 @@ function! s:fillAgendaWindow(data)
 
 	let fopen = []
 	for [date, texts] in s:makePrintableStructure(a:data)
-		let date = vorg#dates#commonName(date)
+		let date = vorgmd#dates#commonName(date)
 
 		if date =~? '^[a-zA-Z\u0100-\uFFFF]\+$' && date !=? "yesterday"
 			call add(fopen, line)
 			let this_week = 1
 		endif
 
-		call setline(line, "- " . date)
+		call setline(line, "# " . date)
 		let texts_copy = copy(texts)
-		call append(line, map(texts_copy, {i, val -> "  " . val[1]}))
+		call append(line, map(texts_copy, {i, val -> "- " . val[1]}))
 
 		let line += 1
 		for [lnum, text] in texts
@@ -82,9 +82,7 @@ function! s:fillAgendaWindow(data)
 		let line += 1
 	endfor
 
-	for line in fopen
-		execute line . "foldo"
-	endfor
+	%foldo
 
 	setlocal nomodifiable
 	call winrestview(view)
@@ -93,7 +91,7 @@ endfunction
 function! s:gatherFromLine(line, lnum, items)
 	let match = matchstr(a:line, s:scheduled_match)
 	if strlen(match) > 0
-		let line = substitute(a:line, s:scheduled_match, (match[0] ==# "!" ? "DEADLINE" : "SCHEDULED"), "")
+		let line = substitute(a:line, s:scheduled_match, "", "")
 		call add(a:items, [a:lnum, line, match])
 	endif
 endfunction
@@ -123,9 +121,9 @@ function! s:focusBuffer(from)
 	return 1
 endfunction
 
-function! vorg#agenda#show()
-	if &filetype !=? "vorg"
-		echoe "Agenda is only available for vorg files"
+function! vorgmd#agenda#show()
+	if &filetype !=? "markdown"
+		echoe "Agenda is only available for markdown files"
 		return
 	endif
 
@@ -136,13 +134,13 @@ function! vorg#agenda#show()
 	endif
 endfunction
 
-function! vorg#agenda#close(bufdata)
+function! vorgmd#agenda#close(bufdata)
 	if s:focusBuffer(a:bufdata)
 		q
 	endif
 endfunction
 
-function! vorg#agenda#reload()
+function! vorgmd#agenda#reload()
 	if !exists("b:from")
 		return
 	endif
@@ -156,7 +154,7 @@ function! vorg#agenda#reload()
 	endif
 endfunction
 
-function! vorg#agenda#jump()
+function! vorgmd#agenda#jump()
 	let lnum = line(".")
 	if exists("b:from")
 		let vorg_lnum = get(b:meta, lnum, 0)

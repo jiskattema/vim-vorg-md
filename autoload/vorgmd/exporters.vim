@@ -27,7 +27,7 @@ function! s:export_html(data)
 	return lines
 endfunction
 
-function! vorg#exporters#getExporter(format)
+function! vorgmd#exporters#getExporter(format)
 	let fname = "s:export_" . tolower(a:format)
 	if !exists("*" . fname)
 		throw "no exporter for format " . a:format

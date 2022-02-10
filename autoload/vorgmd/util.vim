@@ -1,4 +1,4 @@
-function! vorg#util#parseLinesAround(lnum, fun_start, fun_condition, fun_parse)
+function! vorgmd#util#parseLinesAround(lnum, fun_start, fun_condition, fun_parse)
 	let start_data = a:fun_start(a:lnum)
 	let data = []
 	for direction in [1, -1]
@@ -11,14 +11,14 @@ function! vorg#util#parseLinesAround(lnum, fun_start, fun_condition, fun_parse)
 	return data
 endfunction
 
-function! vorg#util#export(data, format)
-	let Exporter = vorg#exporters#getExporter(a:format)
+function! vorgmd#util#export(data, format)
+	let Exporter = vorgmd#exporters#getExporter(a:format)
 	let exported = Exporter(a:data)
 
 	enew
 	call append(0, exported)
 endfunction
 
-function! vorg#util#trim(string)
+function! vorgmd#util#trim(string)
 	return substitute(a:string, '^\s\+\|\s\+$', "", "g")
 endfunction
