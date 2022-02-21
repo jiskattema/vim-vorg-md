@@ -26,26 +26,7 @@ It works for any text based file formats, but using Markdown is recommended.
 Vorg supports and automates task tracking.  Existing mappings help with checkbox
 creation and manipulation.
 
-A folded section text will show the number of tasks completed and total tasks,
-for example [ 3 / 5 ]
-
-```
-- Section
-  - Sub-Section
-     [ ] First Priority Task
-     [x] Second Priority Task
-```
-
-### Free Text
-Sections and tasks can contain any number of lines of free text
-on the same level of indentation.
-
-```
-- Section
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-  sed do eiusmod tempor incididunt ut labore et dolore
-  magna aliqua.
-```
+A folded section text will show the number of open tasks.
 
 ### Tags
 Sections and tasks can be tagged. Tags can be used to indicate context
@@ -110,4 +91,4 @@ Authors
 ---------------
 The plugin was originally developed by Ithai Levi <https://github.com/rlofc>
 Forked and currently maintained by Bartosz Jarzyna <https://github.com/brtastic>
-Again forked and drastically hacked upon by Jisk Attema <https://github.com/jiskjattema>
+Again forked and drastically hacked upon by Jisk Attema <https://github.com/jiskattema>
