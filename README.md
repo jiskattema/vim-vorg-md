@@ -6,6 +6,7 @@ Format
 ------
 The vorg format is designed to be easy on the eyes and readable
 in any text editor.
+It works for any text based file formats, but using Markdown is recommended.
 
 ```
 - Today
@@ -20,13 +21,6 @@ in any text editor.
 ## 2012
   2012-10-23 Found a nice CSS tool #tools
 ```
-
-### Sections
-Vorg is a hierarchical file format. You organize your notes, tasks and text in
-sections, sub-sections, sub-sub-sections etc.  The plugin will automatically
-fold sections based on their indentation level.
-
-Markdown headers are also allowed, and will be folded just like tasks.
 
 ### Tasks
 Vorg supports and automates task tracking.  Existing mappings help with checkbox
@@ -63,13 +57,6 @@ a large set of long vorg files.
   - [ ] My Task @tag3
 ```
 
-### Agenda
-Vorg allows you to show an additional window that summarizes the scheduled dates
-and deadlines in your file. Use **?** to show the agenda window.  When inside
-the window, use **o** to jump to line containing the scheduled item. Use **q**
-to close the window.  Only dates prepended with **~** or **!** will be taken
-into account in the agenda window.
-
 Shortcuts
 ---------
 
@@ -85,57 +72,28 @@ Shortcuts
 - **dy1 to dy9** add the date of first day of this month plus N years
 
 ### normal mode
-- **<CR>** fold or unfold a section
-- **?** show agenda
-- **<C-n>** go to the next item
-- **<C-p>** go to the previous item
-
-where 'next' and 'previous' item depend on the context.
-To find the next item, the first of the following matches is used:
-- when the cursor is on a bullet point, go to the next bullet point in that list
-  (skipping sub-lists).
-- if the cursor is on the last bullet point in a list, go up one level to either
-  a containing list, or a markdown section
-- if the cursor is in a markdown section, go to the next section at the same
-  level.
-- if the cursos is on a last sub-section, move to the next section.
-
-The 'previous' item is defined 
-
-### agenda and quickfix windows
-- **o** jump to line
-- **q** close the window
+- **<Leader>f** Open the quickfix window with all TODO ([ ]) and in progress ([.]) tasks.
+- **<Leader>r** Open the quickfix window with all in progress ([.]) tasks.
 
 To mark a checkbox and set the corresponding datetime:
 - **<leader>z** [ ] zero, no datetime
 - **<leader>x** [x] crossed, set '=YYYY-MM-DD'
 - **<leader>c** [-] cancelled, set '$YYYY-MM-DD'
-- **<leader>v** [.] no mnemonic, set '.YYYY-MM-DD'
-
+- **<leader>v** [.] in progress, set '.YYYY-MM-DD'
 
 Commands
 --------
-These commands are not bound to a specific keymap
-
-- **VorgGather** - search for a prompted word inside a current file, put results
-  into a quickfix list
-- **VorgGatherAll** - search for a prompted word inside vorg files, recursively,
-  put results into a quickfix list
 
 Constructs
 ----------
 Using special notation can cause some parts of a vorg file to have special
 meaning:
-- **#tag** a tag
-- **!datetime** a deadline
-- **~datetime** a scheduled date
-- **// ...** a comment
-
-Indentation
------------
-A valid vorg file uses (exactly) 2 spaces to indent items. This scheme ensures
-your files will be readable in any editor.  This is not a technical constraint.
-It is an aesthetic constraint designed to make sure vorg files are easy to read.
+- **@tag** a tag
+- **!date** a deadline
+  **^date** creation date
+  **=date** completion date
+  **.date** started date
+  **$date** cancellation date
 
 Dates
 -----

@@ -4,4 +4,3 @@
 
 " markdown filetype file
 au BufRead,BufNewFile *.{vorg}   set filetype=vorg
-

@@ -64,8 +64,6 @@ hi def link vorgTime           String
 hi def link vorgHex            Number
 hi def link vorgNumber         Number
 
-setlocal foldmethod=expr
-setlocal foldexpr=vorg#folding#foldExpr(v:lnum)
 setlocal foldtext=vorg#folding#foldText()
 
 let b:current_syntax = "vorg"

@@ -1,15 +1,3 @@
-function! vorg#gather(pattern)
-	if !empty(a:pattern)
-		execute "silent! vimgrep /" . a:pattern . "/j " . substitute(expand('%'), " ", '\\ ', "g")
-	endif
-endfunction
-
-function! vorg#gatherAll(pattern)
-	if !empty(a:pattern)
-		execute "silent! vimgrep /" . a:pattern . "/j **/*.vorg"
-	endif
-endfunction
-
 silent function! vorg#checkbox_log()
   " convert an open checkbox in a log entry
   s/- \[[ xX.-]\]\(\s*\^\d\d\d\d-\d\d-\d\d\)\?\s*//ge
@@ -70,6 +58,7 @@ function vorg#qf_started() abort
         \ })
   copen
   set syntax=vorg
+  set grepprg=&grepprg_old
 endfunction
 
 function s:quickfixtextfunc(info) abort

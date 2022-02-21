@@ -20,8 +20,6 @@ abbreviate <buffer> [[ [ ] ^<C-R>=strftime("%Y-%m-%d")<CR>
 abbreviate <buffer> dl ^<C-R>=strftime("%Y-%m-%d")<CR>
 
 " normal mode shortcuts
-nnoremap <buffer> <silent> ? :call vorg#agenda#show()<CR>
-
 nnoremap <buffer> <silent> <leader>z :call vorg#checkbox_set(' ', '')<CR>
 nnoremap <buffer> <silent> <leader>x :call vorg#checkbox_set('x', '=')<CR>
 nnoremap <buffer> <silent> <leader>- :call vorg#checkbox_set('-', '$')<CR>
