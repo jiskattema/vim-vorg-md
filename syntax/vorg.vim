@@ -14,7 +14,7 @@ syn keyword vorgScheduledKw   SCHEDULED
 
 syn match vorgDeadline        "\(\s\|^\)\@<=!\d\+[/-]\d\+[/-]\d\+\( @ \d\+:\d\+\)\?\(\s\|$\)\@="
 syn match vorgScheduled       "\(\s\|^\)\@<=\~\d\+[/-]\d\+[/-]\d\+\( @ \d\+:\d\+\)\?\(\s\|$\)\@="
-syn match vorgTag             "\(\s\|^\)\@<=#\w\+"
+syn match vorgTag             "\(\s\|^\)\@<=@\w\+"
 syn match vorgComment         "// .*"
 
 syn match vorgLink            "\(https\?://\|www\.\)[^,; \t]*"

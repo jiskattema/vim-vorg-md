@@ -11,6 +11,9 @@ setlocal expandtab
 
 setlocal conceallevel=2
 
+" Add '@' to keyword characters to use keyword-completion on tags
+setlocal iskeyword+=@-@
+
 " insert mode shortcuts
 abbreviate <buffer> -[ - [ ] ^<C-R>=strftime("%Y-%m-%d")<CR>
 abbreviate <buffer> [[ [ ] ^<C-R>=strftime("%Y-%m-%d")<CR>
