@@ -59,8 +59,8 @@ Shortcuts
 To mark a checkbox and set the corresponding datetime:
 - **<leader>z** [ ] zero, no datetime
 - **<leader>x** [x] crossed, set '=YYYY-MM-DD'
-- **<leader>c** [-] cancelled, set '$YYYY-MM-DD'
-- **<leader>v** [.] in progress, set '.YYYY-MM-DD'
+- **<leader>-** [-] cancelled, set '$YYYY-MM-DD'
+- **<leader>.** [.] in progress, set '.YYYY-MM-DD'
 
 Commands
 --------
