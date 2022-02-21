@@ -59,8 +59,8 @@ or category and are important when you need to gather items from
 a large set of long vorg files.
 
 ```
-- Section #tag1 #tag2
-  - [ ] My Task #tag3
+- Section @tag1 @tag2
+  - [ ] My Task @tag3
 ```
 
 ### Agenda

@@ -20,21 +20,18 @@ abbreviate <buffer> [[ [ ] ^<C-R>=strftime("%Y-%m-%d")<CR>
 abbreviate <buffer> dl ^<C-R>=strftime("%Y-%m-%d")<CR>
 
 " normal mode shortcuts
-nnoremap <buffer> <CR> za
 nnoremap <buffer> <silent> ? :call vorg#agenda#show()<CR>
 
 nnoremap <buffer> <silent> <leader>z :call vorg#checkbox_set(' ', '')<CR>
 nnoremap <buffer> <silent> <leader>x :call vorg#checkbox_set('x', '=')<CR>
-nnoremap <buffer> <silent> <leader>c :call vorg#checkbox_set('-', '$')<CR>
-nnoremap <buffer> <silent> <leader>v :call vorg#checkbox_set('.', '.')<CR>
+nnoremap <buffer> <silent> <leader>- :call vorg#checkbox_set('-', '$')<CR>
+nnoremap <buffer> <silent> <leader>. :call vorg#checkbox_set('.', '.')<CR>
+
+nnoremap <buffer> <silent> <leader>l :call vorg#checkbox_log()<CR>
 
 nnoremap <buffer> <silent> <leader>r :call vorg#qf_started()<CR>
 nnoremap <buffer> <silent> <leader>f :call vorg#qf_todo()<CR>
 
-
-" move to next/prev task
-nmap <buffer> <C-n> :call vorg#gonext()<CR>
-nmap <buffer> <C-p> :call vorg#goprevious()<CR>
 
 " shortcuts for date entry
 abbreviate <buffer> dd <C-R>=strftime("%Y-%m-%d")<CR>

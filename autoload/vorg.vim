@@ -1,21 +1,19 @@
-function! s:tmpQuickfix()
-	copen
-	nnoremap <buffer> o <CR>
-	nnoremap <buffer> q :q<CR>
-endfunction
-
 function! vorg#gather(pattern)
 	if !empty(a:pattern)
 		execute "silent! vimgrep /" . a:pattern . "/j " . substitute(expand('%'), " ", '\\ ', "g")
-		call s:tmpQuickfix()
 	endif
 endfunction
 
 function! vorg#gatherAll(pattern)
 	if !empty(a:pattern)
 		execute "silent! vimgrep /" . a:pattern . "/j **/*.vorg"
-		call s:tmpQuickfix()
 	endif
+endfunction
+
+silent function! vorg#checkbox_log()
+  " convert an open checkbox in a log entry
+  s/- \[[ xX.-]\]\(\s*\^\d\d\d\d-\d\d-\d\d\)\?\s*//ge
+  normal _idl _
 endfunction
 
 silent function! vorg#checkbox_set(state, symbol)
@@ -30,69 +28,17 @@ silent function! vorg#checkbox_set(state, symbol)
   endif
 endfunction
 
-function vorg#gonext()
-  " find the previous header or bullet point
-  " first move one word forward to compensate for the exclusive backwards search
-  normal! w?^\s*[-#]
-
-  " move to the first non-blank character
-  normal! _
-
-  let c = getline('.')[col('.')-1] 
-
-  if c == '-'
-    " go to the next bullet point with equal or less indentation
-    " do not pass a markdown header
-    let ind = indent(line('.'))
-    execute('silent normal! /^\s\{0,' . ind . '}-\|^\s*#')
-    normal! _
-  endif
-  if c == '#'
-    " go to the next markdown header of equal of less depth
-    " count the number of #
-    " find the next with the same or less
-    let markdown_depth = substitute(getline('.'), '^\s*\(#*\).*', '\1', 'e')
-    let markdown_depth = strlen(markdown_depth)
-    
-    execute('silent normal! /^\s*#\{1,' . markdown_depth . '} ')
-    normal! _
-  endif
-endfunction
-
-function vorg#goprevious()
-  " find the previous header or bullet point
-  " first move one word forward to compensate for the exclusive backwards search
-  normal! w?^\s*[-#]
-
-  " move to the first non-blank character
-  normal! _
-
-  let c = getline('.')[col('.')-1] 
-
-  if c == '-'
-    " go to the previous bullet point with equal or less indentation
-    " do not pass a markdown header
-    let ind = indent(line('.'))
-    execute('silent normal! k?^\s\{0,' . ind . '}-\|^\s*#')
-    normal! _
-  endif
-  if c == '#'
-    " go to the previous markdown header of equal of less depth
-    " count the number of #
-    " find the next with the same or less
-    let markdown_depth = substitute(getline('.'), '^\s*\(#*\).*', '\1', 'e')
-    let markdown_depth = strlen(markdown_depth)
-    
-    execute('silent normal! ?^\s*#\{1,' . markdown_depth . '} ')
-    normal! _
-  endif
-endfunction
-
 " Copied from user938271
 " https://vi.stackexchange.com/questions/19940/changing-how-the-quickfix-list-displays-matches
 function vorg#qf_todo() abort
-  " Find deadlines or scheduled dates with an empty [ ]  or started [.] checkbox in front
-  silent vimgrep /^.*\[[ .]\].*[~!]\d\d\d\d-\d\d-\d\d/gj %
+  " Find items wit an empty [ ] or started [.] checkbox in front
+  let grepprg_old = &grepprg
+  set grepprg=git\ grep\ -Ine
+  silent! grep '\[[ \.]\]' -- ':(exclude)*.pdf'
+  :redraw!
+
+  "set wildignore+=.git/**,.zim/**
+  "silent vimgrep /^\s*-\?\s*\[[ .]\]/gj **/*.txt
 
   let qfl = getqflist()
   call sort(qfl, function('s:SortTodo'))
@@ -103,11 +49,17 @@ function vorg#qf_todo() abort
         \ })
   copen
   set syntax=vorg
+  set grepprg=&grepprg_old
 endfunction
 
 function vorg#qf_started() abort
   " Find started dates
-  silent vimgrep /[.]\d\d\d\d-\d\d-\d\d/gj %
+  let grepprg_old = &grepprg
+  set grepprg=git\ grep\ -Ine
+  silent! grep '[.]\d\d\d\d-\d\d-\d\d' -- ':(exclude)*.pdf'
+  :redraw!
+
+  "silent vimgrep /[.]\d\d\d\d-\d\d-\d\d/gj %
 
   let qfl = getqflist()
   call sort(qfl, function('s:SortTodo'))
