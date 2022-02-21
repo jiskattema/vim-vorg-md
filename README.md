@@ -38,10 +38,10 @@ a large set of long vorg files.
   - [ ] My Task @tag3
 ```
 
-Shortcuts
----------
+Keymappings
+-----------
 
-### insert mode
+### insert mode abbreviations
 - **-[** begin a new task as list item
 - **[[** begin a new task as free text
 - **dl** add a logbook note
@@ -53,14 +53,17 @@ Shortcuts
 - **dy1 to dy9** add the date of first day of this month plus N years
 
 ### normal mode
-- **<Leader>f** Open the quickfix window with all TODO ([ ]) and in progress ([.]) tasks.
-- **<Leader>r** Open the quickfix window with all in progress ([.]) tasks.
+The following keymappings are defined in normal mode (prefixed with \<Leader\>):
+
+- **f** Open the quickfix window with all TODO ([ ]) and in progress ([.]) tasks.
+- **r** Open the quickfix window with all in progress ([.]) tasks.
 
 To mark a checkbox and set the corresponding datetime:
-- **<leader>z** [ ] zero, no datetime
-- **<leader>x** [x] crossed, set '=YYYY-MM-DD'
-- **<leader>-** [-] cancelled, set '$YYYY-MM-DD'
-- **<leader>.** [.] in progress, set '.YYYY-MM-DD'
+
+- **z** [ ] zero, no datetime
+- **x** [x] crossed, set '=YYYY-MM-DD'
+- **-** [-] cancelled, set '$YYYY-MM-DD'
+- **.** [.] in progress, set '.YYYY-MM-DD'
 
 Commands
 --------
@@ -69,12 +72,13 @@ Constructs
 ----------
 Using special notation can cause some parts of a vorg file to have special
 meaning:
+
 - **@tag** a tag
 - **!date** a deadline
-  **^date** creation date
-  **=date** completion date
-  **.date** started date
-  **$date** cancellation date
+- **^date** task creation date
+- **=date** task completion date
+- **.date** task started date
+- **$date** task cancellation date
 
 Dates
 -----
@@ -90,5 +94,7 @@ Required Vim version 8
 Authors
 ---------------
 The plugin was originally developed by Ithai Levi <https://github.com/rlofc>
+
 Forked and currently maintained by Bartosz Jarzyna <https://github.com/brtastic>
+
 Again forked and drastically hacked upon by Jisk Attema <https://github.com/jiskattema>
