@@ -2,6 +2,10 @@ Vorg
 ====
 A plain text organizer for ViM
 
+This is a fork from 'bbrtj/vim-vorg-md' and is starting to deviate
+significantly. Please make an issue if you want me to renamen the project.
+
+
 Format
 ------
 The vorg format is designed to be easy on the eyes and readable
@@ -10,16 +14,16 @@ It works for any text based file formats, but using Markdown is recommended.
 
 ```
 - Today
-  - [ ] Call Tom #office #2m
-  - [ ] Pick-up my laundry #car #30m
+  - [ ] Call Tom @office @2m
+  - [ ] Pick-up my laundry #car @30m
 - Someday
-  - [ ] Read "Getting Things Done" #book
-  - [ ] Watch "Men Of Valor" #movie
+  - [ ] Read "Getting Things Done" @book
+  - [ ] Watch "Men Of Valor" @movie
 
 # Logbook
 
 ## 2012
-  2012-10-23 Found a nice CSS tool #tools
+  2012-10-23 Found a nice CSS tool @tools
 ```
 
 ### Tasks
